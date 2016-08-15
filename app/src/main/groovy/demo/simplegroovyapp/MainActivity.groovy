@@ -1,17 +1,18 @@
-package demo.simplegroovyapp;
+package demo.simplegroovyapp
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle
-import android.widget.EditText;
-import android.widget.TextView;
-
+import android.support.v7.app.AppCompatActivity
+import android.widget.EditText
+import android.widget.TextView
 import com.arasthel.swissknife.SwissKnife
 import com.arasthel.swissknife.annotations.InjectView
 import com.arasthel.swissknife.annotations.OnClick
 import demo.simplegroovyapp.component.DaggerVehicleComponent
 import demo.simplegroovyapp.component.VehicleComponent
 import demo.simplegroovyapp.domain.Vehicle
-import groovy.transform.CompileStatic;
+import groovy.transform.CompileStatic
+
+import javax.inject.Inject
 
 @CompileStatic
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +23,12 @@ public class MainActivity extends AppCompatActivity {
     @InjectView(R.id.edtRpm)
     EditText edtRpm
 
-    Vehicle vehicle
+	// need to add the public access scope to make it a field rather than a groovy property,
+	// so using the default access won't work:
+	// @Inject
+	// Vehicle vehicle
+    @Inject
+    public Vehicle vehicle
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
         SwissKnife.inject(this)
 
         VehicleComponent vehicleComponent = DaggerVehicleComponent.builder().build()
-        vehicle = vehicleComponent.provideVehicle()
+        vehicleComponent.inject(this)
+
+        //vehicle = vehicleComponent.provideVehicle()
     }
 
     @OnClick(R.id.btnSetRpm)
