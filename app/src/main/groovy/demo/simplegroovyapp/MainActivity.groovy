@@ -1,5 +1,6 @@
 package demo.simplegroovyapp
 
+
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
@@ -25,9 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
 	// need to add the public access scope to make it a field rather than a groovy property,
 	// so using the default access won't work:
-	// @Inject
-	// Vehicle vehicle
-    @Inject
+	 @Inject
+//	 Vehicle vehicle
     public Vehicle vehicle
 
     @Override
@@ -36,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main)
         SwissKnife.inject(this)
 
-        VehicleComponent vehicleComponent = DaggerVehicleComponent.builder().build()
+        // we can also use create() in this case
+        VehicleComponent vehicleComponent = DaggerVehicleComponent.create() //builder().build()
         vehicleComponent.inject(this)
 
-        //vehicle = vehicleComponent.provideVehicle()
+        // not needed anymore
+//        vehicle = vehicleComponent.provideVehicle()
     }
 
     @OnClick(R.id.btnSetRpm)
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             vehicle.speed = edtRpm.text.toString().toInteger()
             txtRpm.text = "Current RPM is $vehicle.speed"
         } catch (NumberFormatException e) {
-
+            log e.message
         }
     }
 

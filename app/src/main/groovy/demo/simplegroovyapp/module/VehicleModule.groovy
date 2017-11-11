@@ -1,13 +1,16 @@
 package demo.simplegroovyapp.module;
 
-import javax.inject.Singleton;
+import groovy.transform.CompileStatic
 
-import dagger.Module;
-import dagger.Provides;
-import demo.simplegroovyapp.domain.Motor;
-import demo.simplegroovyapp.domain.Vehicle;
+import javax.inject.Singleton
+
+import dagger.Module
+import dagger.Provides
+import demo.simplegroovyapp.domain.Motor
+import demo.simplegroovyapp.domain.Vehicle
 
 @Module
+@CompileStatic
 class VehicleModule {
 
     @Singleton

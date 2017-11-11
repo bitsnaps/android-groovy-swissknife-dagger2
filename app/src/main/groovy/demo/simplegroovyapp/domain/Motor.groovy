@@ -1,8 +1,14 @@
 package demo.simplegroovyapp.domain;
 
+import groovy.transform.Canonical
+import groovy.transform.CompileStatic
+
+@CompileStatic
+@Canonical
 class Motor {
 
-    private int rpm
+    int rpm
+    int speed
 
 }
 

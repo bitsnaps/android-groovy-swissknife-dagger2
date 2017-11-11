@@ -8,11 +8,13 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
+        //classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.android.tools.build:gradle:2.3.3'
 
         // check current version here
         // https://github.com/groovy/groovy-android-gradle-plugin
-        classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.8'
+        //classpath 'org.codehaus.groovy:gradle-groovy-android-plugin:0.3.8'
+        classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:1.1.0'
     }
 }
 
